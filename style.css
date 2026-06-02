@@ -1,0 +1,328 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f0f1a;
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.container {
+    width: 100%;
+    max-width: 720px;
+}
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.upload-area {
+    border: 2px dashed #333;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+}
+.upload-area:hover, .upload-area.dragover {
+    border-color: #7c4dff;
+    background: rgba(124,77,255,.08);
+}
+.upload-area p {
+    color: #888;
+    font-size: .9rem;
+    margin-top: 8px;
+}
+.upload-area .icon {
+    font-size: 2.5rem;
+}
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+    flex-wrap: wrap;
+}
+.toolbar .save-name {
+    flex: 1;
+    min-width: 0;
+    font-weight: 600;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.btn {
+    background: #2a2a3e;
+    border: none;
+    color: #e0e0e0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: .85rem;
+    transition: background .15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+.btn:hover {
+    background: #3a3a52;
+}
+.btn-primary {
+    background: #7c4dff;
+    color: #fff;
+}
+.btn-primary:hover {
+    background: #6c3df0;
+}
+.btn-danger {
+    background: #c62828;
+    color: #fff;
+}
+.btn-danger:hover {
+    background: #b71c1c;
+}
+.search-bar {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #2a2a3e;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-size: .9rem;
+    outline: none;
+    transition: border-color .2s;
+    margin-bottom: 12px;
+}
+.search-bar:focus {
+    border-color: #7c4dff;
+}
+.item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 55vh;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+.item-list::-webkit-scrollbar {
+    width: 6px;
+}
+.item-list::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+.item-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #1a1a2e;
+    cursor: pointer;
+    transition: background .15s;
+    border: 1px solid transparent;
+}
+.item-card:hover {
+    background: #22223a;
+    border-color: #2a2a3e;
+}
+.item-card .id-badge {
+    font-size: .7rem;
+    color: #666;
+    min-width: 28px;
+}
+.item-card .emoji {
+    font-size: 1.3rem;
+    width: 32px;
+    text-align: center;
+}
+.item-card .name {
+    flex: 1;
+    font-weight: 500;
+}
+.item-card .recipes-preview {
+    font-size: .75rem;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 200px;
+}
+.stats {
+    padding: 12px 0;
+    font-size: .8rem;
+    color: #666;
+    display: flex;
+    gap: 16px;
+}
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.modal-overlay.active {
+    display: flex;
+}
+.modal {
+    background: #1a1a2e;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 24px;
+    border: 1px solid #2a2a3e;
+}
+.modal::-webkit-scrollbar {
+    width: 6px;
+}
+.modal::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+.modal h2 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.modal .info-row {
+    display: flex;
+    gap: 16px;
+    font-size: .85rem;
+    color: #999;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+.existing-recipes {
+    margin-bottom: 16px;
+}
+.existing-recipes h3 {
+    font-size: .9rem;
+    color: #aaa;
+    margin-bottom: 8px;
+}
+.recipe-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #2a2a3e;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: .8rem;
+    margin: 2px 4px 2px 0;
+}
+.add-recipe-section h3 {
+    font-size: .9rem;
+    color: #aaa;
+    margin-bottom: 12px;
+}
+.recipe-pickers {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.picker-col {
+    flex: 1;
+}
+.picker-col label {
+    display: block;
+    font-size: .8rem;
+    color: #888;
+    margin-bottom: 6px;
+}
+.picker-list {
+    background: #0f0f1a;
+    border-radius: 10px;
+    border: 1px solid #2a2a3e;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.picker-list::-webkit-scrollbar {
+    width: 5px;
+}
+.picker-list::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+.picker-item {
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: .85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background .1s;
+    border-bottom: 1px solid #1a1a2e;
+}
+.picker-item:last-child {
+    border-bottom: none;
+}
+.picker-item:hover {
+    background: #22223a;
+}
+.picker-item.selected {
+    background: rgba(124,77,255,.25);
+    color: #b388ff;
+}
+.picker-item .emoji-sm {
+    font-size: 1rem;
+}
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    padding-top: 8px;
+}
+.add-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.add-form input {
+    background: #0f0f1a;
+    border: 1px solid #2a2a3e;
+    color: #e0e0e0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: .85rem;
+    outline: none;
+    flex: 1;
+    min-width: 100px;
+}
+.add-form input:focus {
+    border-color: #7c4dff;
+}
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+.hidden {
+    display: none !important;
+}
+@media (max-width: 600px) {
+    body { padding: 12px; }
+    .recipe-pickers { flex-direction: column; }
+    .picker-list { max-height: 140px; }
+    .modal { padding: 16px; }
+}

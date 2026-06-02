@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infinite Craft Save Editor</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>🎨 Infinite Craft Save Editor</h1>
+
+    <div class="upload-area" id="uploadArea">
+        <div class="icon">📁</div>
+        <p><strong>Upload .ic file</strong> &nbsp;or drag & drop here</p>
+        <input type="file" id="fileInput" accept=".ic" style="display:none">
+    </div>
+
+    <div id="editor" class="hidden">
+        <div class="toolbar">
+            <span class="save-name" id="saveName">Save: —</span>
+            <button class="btn" id="btnAdd">➕ Add</button>
+            <button class="btn btn-primary" id="btnDownload">💾 Download</button>
+        </div>
+
+        <div id="addForm" class="add-form hidden">
+            <input type="text" id="newName" placeholder="Element name" value="New Element">
+            <input type="text" id="newEmoji" placeholder="Emoji" value="❓" style="max-width:80px">
+            <button class="btn btn-primary" id="btnConfirmAdd">Add</button>
+            <button class="btn" id="btnCancelAdd">Cancel</button>
+        </div>
+
+        <input type="text" class="search-bar" id="searchBar" placeholder="🔍  Filter items...">
+
+        <div class="item-list" id="itemList"></div>
+
+        <div class="stats">
+            <span id="statItems">Items: 0</span>
+            <span id="statRecipes">Recipes: 0</span>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="recipeModal">
+        <div class="modal">
+            <h2 id="modalTitle">✏️ Edit Item</h2>
+            <div class="info-row" id="modalInfo"></div>
+
+            <div class="existing-recipes" id="existingRecipes">
+                <h3>Recipes</h3>
+                <div id="recipeTags"></div>
+            </div>
+
+            <div class="add-recipe-section">
+                <h3>➕ Add Recipe</h3>
+                <div class="recipe-pickers">
+                    <div class="picker-col">
+                        <label>First ingredient</label>
+                        <div class="picker-list" id="pickerLeft"></div>
+                    </div>
+                    <div class="picker-col">
+                        <label>Second ingredient</label>
+                        <div class="picker-list" id="pickerRight"></div>
+                    </div>
+                </div>
+                <div style="text-align:center;font-size:.85rem;color:#888;margin-bottom:8px" id="pickerPreview"></div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn" id="btnCloseModal">Close</button>
+                <button class="btn btn-primary" id="btnConfirmRecipe">Confirm Recipe</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
